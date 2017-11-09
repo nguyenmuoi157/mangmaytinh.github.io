@@ -61,7 +61,19 @@ window.onload = function(){
     context = canvas.getContext("2d");
 	taotilemap();
 	//
-	
+	canvas.height = 700;
+	canvas.width = 1000; 
+	window.onresize = function(){
+		var ratio = canvas.width/canvas.height;
+		var width = window.innerWidth;
+        var height = window.innerHeight;
+		canvas.height = height;
+//		canvas.width = (8/12)
+		canvas.width = (8/12)*width;
+		drawimage();
+//            fitSize(canvas);
+        };
+	//
 	img = new Image();
 	tuong = new Image();
 	dau = new Image();
@@ -83,6 +95,11 @@ window.onload = function(){
 //hàm vẽ hình ảnh
 function drawimage(){	
 	context.clearRect(0,0,1000,700);
+	var ScreenW, ScreenH;
+	ScreenW = canvas.width;
+	ScreenH = canvas.height;
+	tileW = ScreenW/mapW;
+	tileH = ScreenH/mapH;
 	for(var i =0;i<mapH;i++){
 			for(var j =0;j<mapW;j++){
 				var x=j*tileW;
